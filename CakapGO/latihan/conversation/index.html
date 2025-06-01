@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chatbot Botpress</title>
+  <script src="https://cdn.botpress.cloud/webchat/v2.5/inject.js"></script>
+
+    
+  <style>
+    #webchat .bpWebchat {
+      position: unset;
+      width: 100%;
+      height: 100%;
+      max-height: 100%;
+      max-width: 100%;
+    }
+
+    #webchat .bpFab {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  
+  
+  <script src="https://files.bpcontent.cloud/2025/05/13/05/20250513051158-NHDU2DER.js"></script>
+    
+  <div id="webchat" style="width: 500px; height: 500px;"></div>
+
+  <script>
+    window.botpress.on("webchat:ready", () => {
+      window.botpress.open();
+    });
+
+    window.botpress.init({
+      "botId": "0a638c1a-eae2-4695-977b-f55dc5f8d1b0", // ganti jika perlu
+      "clientId": "2e3e311a-45ac-4f6a-9c5b-421da8e89588", // ganti jika perlu
+      "selector": "#webchat",
+      "container": "#webchat",
+      "configuration": {
+        "botName": "My Bot",
+        "color": "#5eb1ef",
+        "variant": "soft",
+        "themeMode": "light",
+        "fontFamily": "inter",
+        "radius": 1
+      }
+    });
+  </script>
+</body>
+</html>
