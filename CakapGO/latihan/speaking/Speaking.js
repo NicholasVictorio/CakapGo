@@ -1,5 +1,10 @@
-function speech() {
-  const promptText = "The quick brown fox jumps over the lazy dog";
+function speech(prompts) {
+  // Random prompt from CSV
+  const promptText = prompts[Math.floor(Math.random() * prompts.length)];
+
+  // Update prompt on screen
+  document.getElementById("prompt").textContent = `❓ Say: "${promptText}"`;
+
   const startBtn = document.getElementById("startBtn");
   const timerDisplay = document.getElementById("timer");
   const resultDiv = document.getElementById("result");
@@ -55,7 +60,7 @@ function speech() {
       clearInterval(countdown);
     };
 
-    // 🔊 New: TTS first, then STT
+    // 🔊 TTS first, then STT
     startBtn.onclick = () => {
       startBtn.disabled = true;
       resultDiv.textContent = "Playing prompt...";
@@ -65,13 +70,12 @@ function speech() {
       utterance.onend = () => {
         setTimeout(() => {
           recognition.start();
-        }, 300); // slight delay to avoid overlap
+        }, 300);
       };
 
       window.speechSynthesis.speak(utterance);
     };
 
-    // Levenshtein percentage similarity (custom scoring)
     function levenshteinScore(a, b) {
       const distance = levenshtein(a, b);
       const maxLength = Math.max(a.length, b.length);
@@ -79,13 +83,11 @@ function speech() {
       return score;
     }
 
-    // Levenshtein distance function
     function levenshtein(a, b) {
       const m = a.length, n = b.length;
       const dp = Array.from({ length: m + 1 }, () => Array(n + 1).fill(0));
       for (let i = 0; i <= m; i++) dp[i][0] = i;
       for (let j = 0; j <= n; j++) dp[0][j] = j;
-
       for (let i = 1; i <= m; i++) {
         for (let j = 1; j <= n; j++) {
           const cost = a[i - 1] === b[j - 1] ? 0 : 1;
