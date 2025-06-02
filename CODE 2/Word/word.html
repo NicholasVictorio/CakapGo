@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>CakapGo - Latihan</title>
+  <link rel="stylesheet" href="word-styles.css" />
+</head>
+<body>
+  <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <div class="logo-icon">C</div>
+                <span class="logo-text">CakapGo</span>
+            </div>
+            <div class="feature-icons">
+                <div class="feature-icon active" data-feature="translate">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14,2 14,8 20,8"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                    </svg>
+                </div>
+                <div class="feature-icon" data-feature="listening">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
+                        <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+                    </svg>
+                </div>
+                <div class="feature-icon" data-feature="speaking">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                        <path d="M8 9h8"/>
+                        <path d="M8 13h6"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="profile-icon"></div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+          <!-- Progress Bar -->
+          <div class="progress-bar-container">
+            <div id="progress-bar">
+              <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div id="progress-label" class="progress-text">0%</div>
+          </div>
+
+          
+
+          <div class="card">
+            <div class="instruction">Terjemahkan ke Inggris</div>
+            <div class="question-box">
+              <span id="question">Loading..</span>
+            </div>
+            
+            <div class="answer-input">
+              <div class="input-container">
+                  <input 
+                    type="text" 
+                    id="answer" 
+                    placeholder="Type your answer here..."
+                    autocomplete="off"
+                    spellcheck="false"                  
+                  >
+                <div class="input-underline"></div>
+            </div>
+            
+            <button class="check-btn" onclick="checkAnswer()">Check</button>
+            <p id="result" class="feedback"></p>
+
+            <div class="skip-row">
+              <button class="skip-btn" onclick="loadRandomQuestion()">Skip</button>
+              <button class="back-btn" onclick="goBack()">⬅ Back</button>
+            </div>
+
+          </main>
+
+  <script src="word-script.js"></script>
+</body>
+</html>
