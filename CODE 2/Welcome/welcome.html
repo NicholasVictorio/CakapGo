@@ -58,13 +58,11 @@
             button.innerHTML = 'Loading...';
             
             setTimeout(() => {
-                alert('Welcome to CakapGo! Redirecting to course selection...');
                 window.location.href = '../Register&Login/register.html';
             }, 500);
         }
 
         function signIn() {
-            alert('Redirecting to sign in page...');
             window.location.href = '../Register&Login/login.html';
         }
 
@@ -78,11 +76,6 @@
             element.addEventListener('mouseleave', function() {
                 this.style.transform = 'scale(1)';
             });
-        });
-
-        // Language selector functionality
-        document.querySelector('.language-selector').addEventListener('click', function() {
-            alert('Language selection coming soon!');
         });
 
         // Add parallax effect on scroll
