@@ -3,20 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <title>Speaking Test</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 40px;
+    }
+    button {
+      padding: 14px 30px;
+      margin: 20px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-
   <h1>Speaking Test</h1>
-  <div id="prompt">❓ Say: "The quick brown fox jumps over the lazy dog."</div>
+  <div id="prompt">❓ Say something...</div>
   <div id="timer">Time left: 10s</div>
   <button id="startBtn">Start Test</button>
   <div id="result">Transcript: ...</div>
-
-  <!-- Link the JS and call speech() -->
-  <script src="Speaking.js"></script>
+  <button id="backBtn" onclick="goBack()">⬅ Back to Difficulty</button>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <script src="speaking.js"></script>
   <script>
-    speech();
+    const level = localStorage.getItem("speakingDifficulty") || "easy";
+    fetch("prompts.csv")
+      .then(response => response.text())
+      .then(csvText => {
+        const data = Papa.parse(csvText, { header: true }).data;
+        const prompts = data
+          .filter(row => row.difficulty === level && row.prompt)
+          .map(row => row.prompt.trim());
+        if (prompts.length === 0) {
+          alert("No prompts available for the selected difficulty.");
+        } else {
+          speech(prompts);
+        }
+      });
+    function goBack() {
+      window.location.href = 'difficulty.html'; // Navigate back to the difficulty selection page
+    }
   </script>
-
 </body>
 </html>
